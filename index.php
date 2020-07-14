@@ -74,7 +74,8 @@ if($command <>"NA"){
 
 		break;
  	case "MP5addjob";
-		$actionText = ['type' => 'uri', 'label' => 'OK','uri' => 'http://10.50.10.5:8000/Service1.svc/rest/InsertSmartOvenIMS/MIS,999,0,082033,PT1234567'];
+		//$actionText = ['type' => 'uri', 'label' => 'OK','uri' => 'http://10.50.10.5:8000/Service1.svc/rest/InsertSmartOvenIMS/MIS,999,0,082033,PT1234567'];
+		$actionText = ['type' => 'message', 'label' => 'OK','text' => 'yes'],['type' => 'message', 'label' => 'NO','text' => 'no'];
           	$jsonText = ['type' => 'template',
 			     'altText' => "Confirm add job หน่อยค่ะ",
 			     'template'=> ['type' => 'confirm', 'text' => 'Confirm add job หน่อยค่ะ'],
