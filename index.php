@@ -47,12 +47,9 @@
             replyMsg($arrayHeader,$arrayPostData);
             break;
         case "addjob2";
-		if ( sizeof($request_array['events']) > 0 ) {
-		   foreach ($request_array['events'] as $event) {
-
 		      $reply_message = '';
-		      $reply_token = $event['replyToken'];
-		      $text = $event['message']['text'];
+		      $reply_token = $arrayJson['events'][0]['replyToken'];
+		      $text = "MP5 รับทราบค่ะ";
 		      $data = [
 			 'replyToken' => $reply_token,
 			 'messages' => [['type' => 'text', 'text' => $text ]]
@@ -60,8 +57,6 @@
 		      $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
 		      $send_result = send_reply_message($API_URL.'/reply',$arrayHeader, $post_body);
 		      echo "Result: ".$send_result."\r\n";
-		    }
-		}
 		//$jsonPostData = json_encode($arrayPostData);
 		//send_reply_message($API_URL.'/reply', $arrayHeader,$jsonPostData);
 		break;
