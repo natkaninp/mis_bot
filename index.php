@@ -61,11 +61,11 @@
 		//send_reply_message($API_URL.'/reply', $arrayHeader,$jsonPostData);
 		break;
 	 case "addjob3";
+		$jsonText = ['type' => 'text', 'text' => "MP5 รับทราบค่ะ$"]
 		$reply_token = $arrayJson['events'][0]['replyToken'];
 		$data = [
 			'replyToken' => $reply_token,
-			'messages' => [['type' => 'text', 'text' => "MP5 รับทราบค่ะ$"
-				       ]]
+			'messages' => [$jsonText]	  
 			];
 		$post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
 		$send_result = send_reply_message($API_URL.'/reply',$arrayHeader, $post_body);
