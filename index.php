@@ -73,7 +73,7 @@ if($command <>"NA"){
 		$send_result = send_reply_message($API_URL.'/reply',$arrayHeader, $post_body);
 
 		break;
- 	case "MP5addjob";
+ 	case "MP5addjob4";
 		$actionText = [['type' => 'message', 'label' => 'OK','text' => 'yes'],['type' => 'message', 'label' => 'NO','text' => 'no']];
           	$jsonText = ['type' => 'template',
 			     'altText' => 'this is a confirm template',
@@ -91,6 +91,22 @@ if($command <>"NA"){
 			];
 		$post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
 		$send_result = send_reply_message($API_URL.'/reply',$arrayHeader, $post_body);
+		break;
+	 case "MP5addjob";
+		$uriText = ['x' => 0, 'y' => 0, 'width' => 100, 'height' => 200];
+		$jsonText = ['uri' => 'text',
+			     'label' => 'กดเพื่อ confirm โตยเจ้า',
+			     'linkUri'=> 'http://10.50.10.5:8000/Service1.svc/rest/InsertSmartOvenIMS/MIS,999,0,082033,PT1234567',
+			     'area' => $uriText
+			    ];
+		$reply_token = $arrayJson['events'][0]['replyToken'];
+		$data = [
+			'replyToken' => $reply_token,
+			'messages' => [$jsonText]	  
+			];
+		$post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
+		$send_result = send_reply_message($API_URL.'/reply',$arrayHeader, $post_body);
+
 		break;
 	default:
 		    $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
