@@ -94,8 +94,8 @@ if($command <>"NA"){
 		break;
 	 case "MP5addjob";
 		$jsonText = ['type' => 'image',
-			     'originalContentUrl' => 'https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg',
-			     'previewImageUrl'=> 'https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg'
+			     'originalContentUrl' => 'http://10.50.10.5:8000/Service1.svc/rest/InsertSmartOvenIMS/MIS,999,0,082033,PT1234567',
+			     'previewImageUrl'=> 'http://10.50.10.5:8000/Service1.svc/rest/InsertSmartOvenIMS/MIS,999,0,082033,PT1234567'
 			    ];
 		$reply_token = $arrayJson['events'][0]['replyToken'];
 		$data = [
