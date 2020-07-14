@@ -40,9 +40,11 @@
             replyMsg($arrayHeader,$arrayPostData);
             break;
         case "addjob";
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("GET", "http://10.50.10.5:8000/Service1.svc/rest/InsertSmartOvenIMS/MIS,999,0,082033,PT1234567", true);
-            xmlhttp.send();
+            <script>
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET", "http://10.50.10.5:8000/Service1.svc/rest/InsertSmartOvenIMS/MIS,999,0,082033,PT1234567", true);
+                xmlhttp.send();
+            </script>
             $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
             $arrayPostData['messages'][0]['type'] = "text";
             $arrayPostData['messages'][0]['text'] = "MP5 add job หื้อเรียบร้อยค่ะ";
