@@ -37,8 +37,7 @@
         $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
         $arrayPostData['messages'][0]['type'] = "text";
         $arrayPostData['messages'][0]['text'] = "MP5 งงคำสั่งเจ้า";
-        replyMsg($arrayHeader,$arrayPostData);*/
-        break;
+        replyMsg($arrayHeader,$arrayPostData);
       break;}
 
 
