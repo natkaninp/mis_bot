@@ -45,6 +45,20 @@
             $arrayPostData['messages'][0]['text'] = "http://10.50.10.5:8000/Service1.svc/rest/InsertSmartOvenIMS/MIS,999,0,082033,PT1234567";
             replyMsg($arrayHeader,$arrayPostData);
             break;
+        case "addjob2";
+            $actions = array (
+				// general message action
+				New \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder("button 1", "text 1"),
+				// URL type action
+				New \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder("Google", "http://www.google.com"),
+				// The following two are interactive actions
+				New \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("next page", "page=3"),
+				New \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("Previous", "page=1")
+			);
+			$img_url = "https://notebookspec.com/preview-lenovo-thinkbook-plus/528197/";
+			$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("button text", "description", $img_url, $actions);
+			$outputText = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("this message to use the phone to look to the Oh", $button);
+			break;
           }
 
 
