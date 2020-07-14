@@ -65,8 +65,8 @@
 		$reply_token = $arrayJson['events'][0]['replyToken'];
 		$data = [
 			'replyToken' => $reply_token,
-			'messages' => [['type' => 'text', 'text' => "MP5 รับทราบค่ะ" ,
-				       'emojis' => [['index'=> 10, 'productId' => '5ac1bfd5040ab15980c9b435', 'emojiId' =>'001' ]] ]]
+			'messages' => [['type' => 'text', 'text' => "MP5 รับทราบค่ะ$" ,
+				       'emojis' => [['index'=> 12, 'productId' => '5ac1bfd5040ab15980c9b435', 'emojiId' =>'001' ]] ]]
 			];
 		$post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
 		$send_result = send_reply_message($API_URL.'/reply',$arrayHeader, $post_body);
