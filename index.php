@@ -1,6 +1,11 @@
 <?php
     $accessToken = "DxRB7paYXRW42FbZilF07llTECGxenTd36Z8kAgT6qo4GYYHJrdau5SF+0sLVAGJPTVoaU42ZTRq8rpfb1KZQ2Ljvcq04R4GLbeS1w37A6kJvuhTXGhhFLypeTgkhdgcUuLcLewfW1DZAjZcfeyh3QdB04t89/1O/w1cDnyilFU=";//copy Channel access token ตอนที่ตั้งค่ามาใส่
     $API_URL = 'https://api.line.me/v2/bot/message';
+	$ACCESS_TOKEN = ''; 
+	$channelSecret = '';
+
+
+	$POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' . $ACCESS_TOKEN);
 
     $content = file_get_contents('php://input');
     $arrayJson = json_decode($content, true);
@@ -50,7 +55,7 @@
 		$arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
 		$arrayPostData['messages'][0]['type'] = "text";
 		$arrayPostData['messages'][0]['text'] = "MP5 กำลังพยายามอยู่นะ";
-		send_reply_message($API_URL,'/reply',$arrayPostData);
+		send_reply_message($API_URL.'/reply', $POST_HEADER,$arrayPostData);
 		break;
           }
 
