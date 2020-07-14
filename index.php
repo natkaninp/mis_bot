@@ -55,7 +55,8 @@
 		$arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
 		$arrayPostData['messages'][0]['type'] = "text";
 		$arrayPostData['messages'][0]['text'] = "MP5 กำลังพยายามอยู่นะ";
-		send_reply_message($API_URL.'/reply', $POST_HEADER,$arrayPostData);
+		$jsonPostData = json_encode($arrayPostData);
+		send_reply_message($API_URL.'/reply', $POST_HEADER,$jsonPostData);
 		break;
           }
 
