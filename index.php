@@ -42,7 +42,7 @@
         case "addjob";
             $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
             $arrayPostData['messages'][0]['type'] = "text";
-            $arrayPostData['messages'][0]['text'] = "https://notebookspec.com/preview-lenovo-thinkbook-plus/528197/";
+            $arrayPostData['messages'][0]['text'] = "http://10.50.10.5:8000/Service1.svc/rest/InsertSmartOvenIMS/MIS,999,0,082033,PT1234567";
             replyMsg($arrayHeader,$arrayPostData);
             break;
           }
