@@ -42,10 +42,8 @@
         case "addjob";
             $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
             $arrayPostData['messages'][0]['type'] = "text";
-           // $arrayPostData['messages'][0]['text'] = "MP5 add job หื้อเรียบร้อยค่ะ";
-            $arrayPostData['messages'][0]['text'] = "https://notebookspec.com/preview-lenovo-thinkbook-plus/528197/";
+            $arrayPostData['messages'][0]['text'] = "MP5 add job หื้อเรียบร้อยค่ะ";
             replyMsg($arrayHeader,$arrayPostData);
-           
             break;
           }
 
