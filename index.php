@@ -56,7 +56,7 @@
 		$arrayPostData['messages'][0]['type'] = "text";
 		$arrayPostData['messages'][0]['text'] = "MP5 กำลังพยายามอยู่นะ";
 		$jsonPostData = json_encode($arrayPostData);
-		send_reply_message($API_URL.'/reply', $POST_HEADER,$jsonPostData);
+		send_reply_message($API_URL.'/reply', $arrayHeader,$jsonPostData);
 		break;
           }
 
