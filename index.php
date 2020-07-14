@@ -95,7 +95,7 @@ if($command <>"NA"){
 	 case "MP5addjob";
 		$jsonText = ['type' => 'uri',
 			     'label' => 'กดเพื่อ confirm โตยเจ้า',
-			     'linkUri'=> 'http://10.50.10.5:8000/Service1.svc/rest/InsertSmartOvenIMS/MIS,999,0,082033,PT1234567',
+			     'linkUri'=> 'https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg',
 			     'area' => ['x' => 0, 'y' => 0, 'width' => 100, 'height' => 200]
 			    ];
 		$reply_token = $arrayJson['events'][0]['replyToken'];
