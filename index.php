@@ -95,8 +95,7 @@ if($command <>"NA"){
 	 case "MP5addjob";
 		$jsonText = ['type' => 'uri',
 			     'label' => 'กดเพื่อ confirm โตยเจ้า',
-			     'linkUri'=> 'https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg',
-			     'area' => ['x' => 0, 'y' => 0, 'width' => 100, 'height' => 200]
+			     'uri'=> 'https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg'
 			    ];
 		$reply_token = $arrayJson['events'][0]['replyToken'];
 		$data = [
