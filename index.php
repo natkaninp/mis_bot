@@ -10,6 +10,7 @@
     
     //รับข้อความจากผู้ใช้
     $message = $arrayJson['events'][0]['message']['text'];
+    $command = substr($message,0,strpos($message," "));
 #ตัวอย่าง Message Type "Text"
     if($message == "สวัสดี"){
         $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
@@ -29,6 +30,20 @@
         $arrayPostData['messages'][0]['type'] = "text";
         $arrayPostData['messages'][0]['text'] = "ปิงปอง MIS หล่อๆ ที่เข้ามีตติ้งกับเราวันก่อนใช่ป่าวคะ";
         replyMsg($arrayHeader,$arrayPostData);
+    }
+
+
+    switch ($command) {
+      case "addjob":
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", "http://10.50.10.5:8000/Service1.svc/rest/InsertSmartOvenIMS/MIS,999,0,082033,PT1234567", true);
+        xmlhttp.send();
+        break;
+     /* default:
+        $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
+        $arrayPostData['messages'][0]['type'] = "text";
+        $arrayPostData['messages'][0]['text'] = "MP5 งงคำสั่งเจ้า";
+        replyMsg($arrayHeader,$arrayPostData);*/
     }
 
     function replyMsg($arrayHeader,$arrayPostData){
