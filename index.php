@@ -63,8 +63,8 @@
 	 case "addjob3";
 		$emojiText = ['index' => 0, 'productId' => '5ac1bfd5040ab15980c9b435', 'emojiId' => '001'];
 		$jsonText = ['type' => 'text',
-			     'text' => "$MP5 รับทราบค่ะ"
-			     //'emojis'=> [$emojiText]
+			     'text' => "$ MP5 รับทราบค่ะ",
+			     'emojis'=> [$emojiText]
 			    ];
 		$reply_token = $arrayJson['events'][0]['replyToken'];
 		$data = [
