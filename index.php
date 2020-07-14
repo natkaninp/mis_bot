@@ -25,4 +25,7 @@
         $arrayPostData['messages'][0]['stickerId'] = "46";
         replyMsg($arrayHeader,$arrayPostData);
     }
+
+     /*Return HTTP Request 200*/
+     http_response_code(200);
     ?>
