@@ -93,9 +93,9 @@ if($command <>"NA"){
 		$send_result = send_reply_message($API_URL.'/reply',$arrayHeader, $post_body);
 		break;
 	 case "MP5addjob";
-		$jsonText = ['type' => 'uri',
-			     'label' => 'กดเพื่อ confirm โตยเจ้า',
-			     'uri'=> 'https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg'
+		$jsonText = ['type' => 'image',
+			     'originalContentUrl' => 'https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg',
+			     'previewImageUrl'=> 'https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg'
 			    ];
 		$reply_token = $arrayJson['events'][0]['replyToken'];
 		$data = [
