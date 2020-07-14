@@ -47,16 +47,30 @@
             replyMsg($arrayHeader,$arrayPostData);
             break;
         case "addjob2";
-		      $reply_message = '';
-		      $reply_token = $arrayJson['events'][0]['replyToken'];
-		      $text = "MP5 รับทราบค่ะ";
-		      $data = [
-			 'replyToken' => $reply_token,
-			 'messages' => [['type' => 'text', 'text' => $text ]]
-		      ];
-		      $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
-		      $send_result = send_reply_message($API_URL.'/reply',$arrayHeader, $post_body);
-		      echo "Result: ".$send_result."\r\n";
+		$reply_message = '';
+		$reply_token = $arrayJson['events'][0]['replyToken'];
+		$text = "MP5 รับทราบค่ะ";
+		$data = [
+			'replyToken' => $reply_token,
+			'messages' => [['type' => 'text', 'text' => $text ]]
+			];
+		$post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
+		$send_result = send_reply_message($API_URL.'/reply',$arrayHeader, $post_body);
+
+		//$jsonPostData = json_encode($arrayPostData);
+		//send_reply_message($API_URL.'/reply', $arrayHeader,$jsonPostData);
+		break;
+	 case "addjob3";
+		$reply_message = '';
+		$reply_token = $arrayJson['events'][0]['replyToken'];
+		$data = [
+			'replyToken' => $reply_token,
+			'messages' => [['type' => 'text', 'text' => "MP5 รับทราบค่ะ" ,
+				       'emojis' => [['index'=> 10, 'productId' => '5ac1bfd5040ab15980c9b435', 'emojiId' =>'001' ]] ]]
+			];
+		$post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
+		$send_result = send_reply_message($API_URL.'/reply',$arrayHeader, $post_body);
+
 		//$jsonPostData = json_encode($arrayPostData);
 		//send_reply_message($API_URL.'/reply', $arrayHeader,$jsonPostData);
 		break;
