@@ -46,19 +46,19 @@
             replyMsg($arrayHeader,$arrayPostData);
             break;
         case "addjob2";
-            $actions = array (
-				// general message action
-				New \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder("button 1", "text 1"),
-				// URL type action
-				New \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder("Google", "http://www.google.com"),
-				// The following two are interactive actions
-				New \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("next page", "page=3"),
-				New \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("Previous", "page=1")
-			);
-			$img_url = "https://notebookspec.com/preview-lenovo-thinkbook-plus/528197/";
-			$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("button text", "description", $img_url, $actions);
-			$outputText = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("this message to use the phone to look to the Oh", $button);
-			break;
+		$actions = array (
+		  // general message action
+		  New \LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder("button 1", "text 1"),
+		  // URL type action
+		  New \LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder("Google", "http://www.google.com"),
+		  // The following two are interactive actions
+		  New \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("next page", "page=3"),
+		  New \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("Previous page", "page=1")
+		);
+		$img_url = "https://notebookspec.com/preview-lenovo-thinkbook-plus/528197/";
+		$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder("button text", "description", $img_url, $actions);
+		$outputText = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("Button template builder", $button);
+		$response = $bot->replyMessage($event->getReplyToken(), $outputText);
           }
 
 
