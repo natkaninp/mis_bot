@@ -11,7 +11,10 @@
     
     //รับข้อความจากผู้ใช้
     $message = $arrayJson['events'][0]['message']['text'];
-    $command = substr($message,0,strpos($message," "));
+    $command = "NA";
+	if(substr($message,0,3) == "MP5"){
+   	 $command = substr($message,0,strpos($message," "));
+	}
 #ตัวอย่าง Message Type "Text"
     if($message == "สวัสดี"){
         $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
@@ -33,20 +36,15 @@
         replyMsg($arrayHeader,$arrayPostData);
     }
 
+if($command <>"NA"){
     switch ($command) {
-        case "":
-            $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
-            $arrayPostData['messages'][0]['type'] = "text";
-            $arrayPostData['messages'][0]['text'] = "MP5 งงคำสั่งเจ้า";
-            replyMsg($arrayHeader,$arrayPostData);
-            break;
-        case "addjob";
+        case "MP5addjob";
             $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
             $arrayPostData['messages'][0]['type'] = "text";
             $arrayPostData['messages'][0]['text'] = "http://10.50.10.5:8000/Service1.svc/rest/InsertSmartOvenIMS/MIS,999,0,082033,PT1234567";
             replyMsg($arrayHeader,$arrayPostData);
             break;
-        case "addjob2";
+        case "MP5addjob2";
 		$reply_message = '';
 		$reply_token = $arrayJson['events'][0]['replyToken'];
 		$text = "MP5 รับทราบค่ะ";
@@ -60,7 +58,7 @@
 		//$jsonPostData = json_encode($arrayPostData);
 		//send_reply_message($API_URL.'/reply', $arrayHeader,$jsonPostData);
 		break;
-	 case "addjob3";
+	 case "MP5addjob3";
 		$emojiText = ['index' => 0, 'productId' => '5ac1bfd5040ab15980c9b435', 'emojiId' => '001'];
 		$jsonText = ['type' => 'text',
 			     'text' => "$ MP5 รับทราบค่ะ",
@@ -77,9 +75,15 @@
 		//$jsonPostData = json_encode($arrayPostData);
 		//send_reply_message($API_URL.'/reply', $arrayHeader,$jsonPostData);
 		break;
+	    default:
+		    $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
+		    $arrayPostData['messages'][0]['type'] = "text";
+		    $arrayPostData['messages'][0]['text'] = "MP5 งงคำสั่งเจ้า";
+		    replyMsg($arrayHeader,$arrayPostData);
+		    break;
           }
 
-
+	}
 
     function replyMsg($arrayHeader,$arrayPostData){
             $strUrl = "https://api.line.me/v2/bot/message/reply";
