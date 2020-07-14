@@ -1,6 +1,7 @@
 <?php
     $accessToken = "DxRB7paYXRW42FbZilF07llTECGxenTd36Z8kAgT6qo4GYYHJrdau5SF+0sLVAGJPTVoaU42ZTRq8rpfb1KZQ2Ljvcq04R4GLbeS1w37A6kJvuhTXGhhFLypeTgkhdgcUuLcLewfW1DZAjZcfeyh3QdB04t89/1O/w1cDnyilFU=";//copy Channel access token ตอนที่ตั้งค่ามาใส่
-    
+    $API_URL = 'https://api.line.me/v2/bot/message';
+
     $content = file_get_contents('php://input');
     $arrayJson = json_decode($content, true);
     
@@ -46,13 +47,11 @@
             replyMsg($arrayHeader,$arrayPostData);
             break;
         case "addjob2";
-		$actions = array (
-				New \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("yes", "ans=y"),
-				New \LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder("no", "ans=N")
-			);
-			$button = new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ConfirmTemplateBuilder("problem", $actions);
-			$outputText = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder("this message to use the phone to look to the Oh", $button);
-			break;
+		$arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
+		$arrayPostData['messages'][0]['type'] = "text";
+		$arrayPostData['messages'][0]['text'] = "MP5 กำลังพยายามอยู่นะ";
+		send_reply_message($API_URL,'/reply',$arrayPostData);
+		break;
           }
 
 
@@ -71,6 +70,20 @@
             curl_close ($ch);
         }
        exit;
+
+	function send_reply_message($url, $post_header, $post_body)
+	{
+	    $ch = curl_init($url);
+	    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	    curl_setopt($ch, CURLOPT_HTTPHEADER, $post_header);
+	    curl_setopt($ch, CURLOPT_POSTFIELDS, $post_body);
+	    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	    $result = curl_exec($ch);
+	    curl_close($ch);
+
+	    //return $result;
+	}
 
   
      /*Return HTTP Request 200*/
