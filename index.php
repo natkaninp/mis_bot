@@ -38,7 +38,7 @@
 
 if($command <>"NA"){
     switch ($command) {
-        case "MP5addjob";
+        case "MP5addjob1";
             $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
             $arrayPostData['messages'][0]['type'] = "text";
             $arrayPostData['messages'][0]['text'] = "http://10.50.10.5:8000/Service1.svc/rest/InsertSmartOvenIMS/MIS,999,0,082033,PT1234567";
@@ -72,10 +72,23 @@ if($command <>"NA"){
 		$post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
 		$send_result = send_reply_message($API_URL.'/reply',$arrayHeader, $post_body);
 
-		//$jsonPostData = json_encode($arrayPostData);
-		//send_reply_message($API_URL.'/reply', $arrayHeader,$jsonPostData);
 		break;
-	    default:
+ 	case "MP5addjob";
+		$actionText = ['type' => 'uri', 'label' => 'OK','uri' => 'http://10.50.10.5:8000/Service1.svc/rest/InsertSmartOvenIMS/MIS,999,0,082033,PT1234567'];
+          	$jsonText = ['type' => 'template',
+			     'altText' => "Confirm add job หน่อยค่ะ",
+			     'template'=> ['type' => 'confirm', 'text' => 'Confirm add job หน่อยค่ะ'],
+			     'action' => [$actionText]
+			    ];
+		 $reply_token = $arrayJson['events'][0]['replyToken'];
+		 $data = [
+			'replyToken' => $reply_token,
+			'messages' => [$jsonText]	  
+			];
+		$post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
+		$send_result = send_reply_message($API_URL.'/reply',$arrayHeader, $post_body);
+		break;
+	default:
 		    $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
 		    $arrayPostData['messages'][0]['type'] = "text";
 		    $arrayPostData['messages'][0]['text'] = "MP5 งงคำสั่งเจ้า";
