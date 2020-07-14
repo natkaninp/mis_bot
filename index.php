@@ -61,7 +61,7 @@
 		//send_reply_message($API_URL.'/reply', $arrayHeader,$jsonPostData);
 		break;
 	 case "addjob3";
-		$jsonText = ['type' => 'text', 'text' => "MP5 รับทราบค่ะ$"]
+		$jsonText = ['type' => 'text', 'text' => "MP5 รับทราบค่ะ$"];
 		$reply_token = $arrayJson['events'][0]['replyToken'];
 		$data = [
 			'replyToken' => $reply_token,
