@@ -76,10 +76,12 @@ if($command <>"NA"){
  	case "MP5addjob";
 		$actionText = [['type' => 'message', 'label' => 'OK','text' => 'yes'],['type' => 'message', 'label' => 'NO','text' => 'no']];
           	$jsonText = ['type' => 'template',
-			     'altText' => 'Confirm add job หน่อยค่ะ',
-			     'template'=> ['type' => 'confirm', 'text' => 'Confirm add job หน่อยค่ะ',
-					  'action' => [['type' => 'message', 'label' => 'OK','text' => 'yes'],
-						       ['type' => 'message', 'label' => 'NO','text' => 'no']] 
+			     'altText' => 'this is a confirm template',
+			     'template'=> ['type' => 'confirm', 
+					   'text' => 'Confirm add job หน่อยค่ะ',
+					   'action' => [['type' => 'message', 'label' => 'OK','text' => 'yes'],
+						        ['type' => 'message', 'label' => 'NO','text' => 'no']
+						      ] 
 					  ]
 			    ];
 		 $reply_token = $arrayJson['events'][0]['replyToken'];
