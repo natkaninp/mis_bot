@@ -78,7 +78,7 @@ if($command <>"NA"){
           	$jsonText = ['type' => 'template',
 			     'altText' => 'Confirm add job หน่อยค่ะ',
 			     'template'=> ['type' => 'confirm', 'text' => 'Confirm add job หน่อยค่ะ',
-					  'action' => $actionText],
+					  'action' => $actionText]
 			     ]
 			    ];
 		 $reply_token = $arrayJson['events'][0]['replyToken'];
