@@ -129,11 +129,6 @@ if($command <>"NA"){
 		$send_result = send_reply_message($API_URL.'/reply',$arrayHeader, $post_body);
 		break;
 	case "MP5addjob";
-		$arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
-		$arrayPostData['messages'][0]['type'] = "text";
-		$arrayPostData['messages'][0]['text'] = "MP5 บันทึกข้อความเรียบร้อยค่ะ";
-		replyMsg($arrayHeader,$arrayPostData);
-
 		$client = new \Google_Client();
 		$client->setApplicationName('Google Sheets API PHP Quickstart');
 		$client->setScopes(\Google_Service_Sheets::SPREADSHEETS);
@@ -145,6 +140,11 @@ if($command <>"NA"){
 		$txtMessage = "testtttt";
 		// updateData($spreadsheetId,$service);
 		insertData($spreadsheetId,$service,$txtMessage);
+		    
+		$arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
+		$arrayPostData['messages'][0]['type'] = "text";
+		$arrayPostData['messages'][0]['text'] = "MP5 บันทึกข้อความเรียบร้อยค่ะ";
+		replyMsg($arrayHeader,$arrayPostData);
 		break;
 	default:
 		    $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
