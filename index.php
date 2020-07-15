@@ -109,7 +109,7 @@ if($command <>"NA"){
 	case "MP5addjob";
           	$jsonText = ['type' => 'template',
 			     'altText' => 'This is a buttons template',
-			     'template'=> ['type' => 'buttons',
+			     'template'=> ['type' => 'buttons'
 					   ,'thumbnailImageUrl' => ""
 					   ,'imageAspectRatio' => ""
 					   ,'imageSize' => ""
