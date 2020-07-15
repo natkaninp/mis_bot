@@ -137,10 +137,10 @@ if($command <>"NA"){
 		$LINEProfileDatas['token'] = $accessToken;
 
 		$resultsLineProfile = getLINEProfile($LINEProfileDatas);
-
+		/*
 		$LINEUserProfile = json_decode($resultsLineProfile['message'],true);
 		$displayName = $LINEUserProfile['displayName'];
-		/*
+		
 		$client = new \Google_Client();
 		$client->setApplicationName('Google Sheets API PHP Quickstart');
 		$client->setScopes(\Google_Service_Sheets::SPREADSHEETS);
@@ -155,7 +155,7 @@ if($command <>"NA"){
 		    
 		$arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
 		$arrayPostData['messages'][0]['type'] = "text";
-		$arrayPostData['messages'][0]['text'] = $displayName."MP5 บันทึกข้อความเรียบร้อยค่ะ";
+		$arrayPostData['messages'][0]['text'] = $resultsLineProfile."MP5 บันทึกข้อความเรียบร้อยค่ะ";
 		replyMsg($arrayHeader,$arrayPostData);
 		break;
 	default:
