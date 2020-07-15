@@ -139,7 +139,7 @@ if($command <>"NA"){
 		$resultsLineProfile = getLINEProfile($LINEProfileDatas);
 		$LINEUserProfile = json_decode($resultsLineProfile['message'],true);   
 		$displayName = $LINEUserProfile['displayName'];
-		/*
+		
 		$client = new \Google_Client();
 		$client->setApplicationName('Google Sheets API PHP Quickstart');
 		$client->setScopes(\Google_Service_Sheets::SPREADSHEETS);
@@ -150,7 +150,7 @@ if($command <>"NA"){
 		$spreadsheetId = "1CNvcz0JfS7-MoN7LjAhwCMchGd3W-soxD5EDYEWAdAg";
 
 		// updateData($spreadsheetId,$service);
-		insertData($spreadsheetId,$service,$displayName);*/
+		insertData($spreadsheetId,$service,$displayName);
 		    
 		$arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
 		$arrayPostData['messages'][0]['type'] = "text";
