@@ -210,41 +210,6 @@ if($command <>"NA"){
 		    );
 	    }
 
-	    function updateData($spreadsheetId,$service)
-	    {
-		$range = 'a2:b2';
-		$values = [
-			["Test","Test"],
-		    ];
-		    $body = new Google_Service_Sheets_ValueRange([
-			'values' => $values
-		    ]);
-		$params = [
-			'valueInputOption' => 'RAW'
-		    ];
-		    $result = $service->spreadsheets_values->update(
-			$spreadsheetId,
-			$range,
-			$body,
-			$params
-		    );
-	    }
-
-	    function getData($spreadsheetId,$service)
-	    {
-		// GET DATA
-		    $range = 'congress!D2:F1000000';
-			$response = $service->spreadsheets_values->get($spreadsheetId, $range);
-			$values = $response->getValues();
-
-			if(empty($values)){
-				print "No Data Found.\n";
-			}else{
-				foreach ($values as $row) {
-					echo $row[0]."<br/>";
-				}
-			}
-	    }
   
      /*Return HTTP Request 200*/
      http_response_code(200);
