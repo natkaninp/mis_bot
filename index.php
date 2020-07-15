@@ -151,12 +151,12 @@ if($command <>"NA"){
 		$spreadsheetId = "1CNvcz0JfS7-MoN7LjAhwCMchGd3W-soxD5EDYEWAdAg";
 
 		// updateData($spreadsheetId,$service);
-		insertData($spreadsheetId,$service,$displayName);
+		insertData($spreadsheetId,$service,$displayName);*/
 		    
 		$arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
 		$arrayPostData['messages'][0]['type'] = "text";
 		$arrayPostData['messages'][0]['text'] = "MP5 บันทึกข้อความเรียบร้อยค่ะ";
-		replyMsg($arrayHeader,$arrayPostData);*/
+		replyMsg($arrayHeader,$arrayPostData);
 		break;
 	default:
 		    $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
