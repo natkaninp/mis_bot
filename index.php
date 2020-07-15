@@ -129,6 +129,18 @@ if($command <>"NA"){
 		$send_result = send_reply_message($API_URL.'/reply',$arrayHeader, $post_body);
 		break;
 	case "MP5addjob";
+		$replyToken = $arrayJson['events'][0]['replyToken'];
+		$userId = $arrayJson['events'][0]['source']['userId'];
+		$type = $arrayJson['events'][0]['type'];
+
+		$LINEProfileDatas['url'] = "https://api.line.me/v2/bot/profile/".$userId;
+		$LINEProfileDatas['token'] = $accessToken;
+
+		$resultsLineProfile = getLINEProfile($LINEProfileDatas);
+
+		$LINEUserProfile = json_decode($resultsLineProfile['message'],true);
+		$displayName = $LINEUserProfile['displayName'];
+		    
 		$client = new \Google_Client();
 		$client->setApplicationName('Google Sheets API PHP Quickstart');
 		$client->setScopes(\Google_Service_Sheets::SPREADSHEETS);
@@ -137,9 +149,9 @@ if($command <>"NA"){
 
 		$service = new \Google_Service_Sheets($client);
 		$spreadsheetId = "1CNvcz0JfS7-MoN7LjAhwCMchGd3W-soxD5EDYEWAdAg";
-		$txtMessage = "testtttt";
+
 		// updateData($spreadsheetId,$service);
-		insertData($spreadsheetId,$service,$txtMessage);
+		insertData($spreadsheetId,$service,$displayName);
 		    
 		$arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
 		$arrayPostData['messages'][0]['type'] = "text";
