@@ -135,11 +135,11 @@ if($command <>"NA"){
 
 		$LINEProfileDatas['url'] = "https://api.line.me/v2/bot/profile/".$userId;
 		$LINEProfileDatas['token'] = $accessToken;
-		/*
+		
 		$resultsLineProfile = getLINEProfile($LINEProfileDatas);
 		$LINEUserProfile = json_decode($resultsLineProfile['message'],true);   
 		$displayName = $LINEUserProfile['displayName'];
-		
+		/*
 		$client = new \Google_Client();
 		$client->setApplicationName('Google Sheets API PHP Quickstart');
 		$client->setScopes(\Google_Service_Sheets::SPREADSHEETS);
@@ -257,6 +257,46 @@ if($command <>"NA"){
 			}
 	    }
   
+	function getLINEProfile($datas)
+	{
+		$datasReturn = [];
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+		  CURLOPT_URL => $datas['url'],
+		  CURLOPT_RETURNTRANSFER => true,
+		  CURLOPT_ENCODING => "",
+		  CURLOPT_MAXREDIRS => 10,
+		  CURLOPT_TIMEOUT => 30,
+		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		  CURLOPT_CUSTOMREQUEST => "GET",
+		  CURLOPT_HTTPHEADER => array(
+		    "Authorization: Bearer ".$datas['token'],
+		    "Postman-Token: 32d99c7d-9f6e-4413-a4d2-fa0a9f1ecf6d",
+		    "cache-control: no-cache"
+		  ),
+		));
+
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+
+		curl_close($curl);
+
+		if ($err) {
+            $datasReturn['result'] = 'E';
+            $datasReturn['message'] = $err;
+        } else {
+            if($response == "{}"){
+                $datasReturn['result'] = 'S';
+                $datasReturn['message'] = 'Success';
+            }else{
+                $datasReturn['result'] = 'E';
+                $datasReturn['message'] = $response;
+            }
+        }
+		
+		
      /*Return HTTP Request 200*/
      http_response_code(200);
     ?>
