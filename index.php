@@ -259,43 +259,44 @@ if($command <>"NA"){
   
 	function getLINEProfile($datas)
 	{
-		$datasReturn = [];
+			$datasReturn = [];
 
-		$curl = curl_init();
+			$curl = curl_init();
 
-		curl_setopt_array($curl, array(
-		  CURLOPT_URL => $datas['url'],
-		  CURLOPT_RETURNTRANSFER => true,
-		  CURLOPT_ENCODING => "",
-		  CURLOPT_MAXREDIRS => 10,
-		  CURLOPT_TIMEOUT => 30,
-		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		  CURLOPT_CUSTOMREQUEST => "GET",
-		  CURLOPT_HTTPHEADER => array(
-		    "Authorization: Bearer ".$datas['token'],
-		    "Postman-Token: 32d99c7d-9f6e-4413-a4d2-fa0a9f1ecf6d",
-		    "cache-control: no-cache"
-		  ),
-		));
+			curl_setopt_array($curl, array(
+			  CURLOPT_URL => $datas['url'],
+			  CURLOPT_RETURNTRANSFER => true,
+			  CURLOPT_ENCODING => "",
+			  CURLOPT_MAXREDIRS => 10,
+			  CURLOPT_TIMEOUT => 30,
+			  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			  CURLOPT_CUSTOMREQUEST => "GET",
+			  CURLOPT_HTTPHEADER => array(
+			    "Authorization: Bearer ".$datas['token'],
+			    "Postman-Token: 32d99c7d-9f6e-4413-a4d2-fa0a9f1ecf6d",
+			    "cache-control: no-cache"
+			  ),
+			));
 
-		$response = curl_exec($curl);
-		$err = curl_error($curl);
+			$response = curl_exec($curl);
+			$err = curl_error($curl);
 
-		curl_close($curl);
+			curl_close($curl);
 
-		if ($err) {
-            $datasReturn['result'] = 'E';
-            $datasReturn['message'] = $err;
-        } else {
-            if($response == "{}"){
-                $datasReturn['result'] = 'S';
-                $datasReturn['message'] = 'Success';
-            }else{
-                $datasReturn['result'] = 'E';
-                $datasReturn['message'] = $response;
-            }
-        }
-		
+			if ($err) {
+		    $datasReturn['result'] = 'E';
+		    $datasReturn['message'] = $err;
+		} else {
+		    if($response == "{}"){
+			$datasReturn['result'] = 'S';
+			$datasReturn['message'] = 'Success';
+		    }else{
+			$datasReturn['result'] = 'E';
+			$datasReturn['message'] = $response;
+		    }
+		}
+		return $datasReturn;
+	}
 		
      /*Return HTTP Request 200*/
      http_response_code(200);
