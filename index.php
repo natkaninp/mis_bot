@@ -135,9 +135,9 @@ if($command <>"NA"){
 
 		$LINEProfileDatas['url'] = "https://api.line.me/v2/bot/profile/".$userId;
 		$LINEProfileDatas['token'] = $accessToken;
-
-		$resultsLineProfile = getLINEProfile($LINEProfileDatas);
 		/*
+		$resultsLineProfile = getLINEProfile($LINEProfileDatas);
+		
 		$LINEUserProfile = json_decode($resultsLineProfile['message'],true);
 		$displayName = $LINEUserProfile['displayName'];
 		
@@ -155,7 +155,7 @@ if($command <>"NA"){
 		    
 		$arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
 		$arrayPostData['messages'][0]['type'] = "text";
-		$arrayPostData['messages'][0]['text'] = $resultsLineProfile."MP5 บันทึกข้อความเรียบร้อยค่ะ";
+		$arrayPostData['messages'][0]['text'] = $type."MP5 บันทึกข้อความเรียบร้อยค่ะ";
 		replyMsg($arrayHeader,$arrayPostData);
 		break;
 	default:
