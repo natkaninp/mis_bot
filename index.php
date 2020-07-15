@@ -140,6 +140,7 @@ if($command <>"NA"){
 		$txtMessage = "testtttt";
 		// updateData($spreadsheetId,$service);
 		insertData($spreadsheetId,$service,$txtMessage);
+		break;
 	default:
 		    $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
 		    $arrayPostData['messages'][0]['type'] = "text";
