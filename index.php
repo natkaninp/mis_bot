@@ -92,7 +92,7 @@ if($command <>"NA"){
 		$post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
 		$send_result = send_reply_message($API_URL.'/reply',$arrayHeader, $post_body);
 		break;
-	 case "MP5addjob";
+	 case "MP5addjob5";
 		$jsonText = ['type' => 'image',
 			     'originalContentUrl' => 'http://10.50.10.5:8000/Service1.svc/rest/InsertSmartOvenIMS/MIS,999,0,082033,PT1234567',
 			     'previewImageUrl'=> 'http://10.50.10.5:8000/Service1.svc/rest/InsertSmartOvenIMS/MIS,999,0,082033,PT1234567'
@@ -105,6 +105,28 @@ if($command <>"NA"){
 		$post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
 		$send_result = send_reply_message($API_URL.'/reply',$arrayHeader, $post_body);
 
+		break;
+	case "MP5addjob";
+          	$jsonText = ['type' => 'template',
+			     'altText' => 'This is a buttons template',
+			     'template'=> ['type' => 'buttons',
+					   ,'thumbnailImageUrl' => ""
+					   ,'imageAspectRatio' => ""
+					   ,'imageSize' => ""
+					   ,'imageBackgroundColor' => ""
+					   ,'title' => "Menu"
+					   ,'text' => 'รบกวนกดปุ่ม confirm ด้วยค่ะ'
+					   ,'defaultAction' => [['type' => 'uri', 'label' => 'Confirm','uri' => 'http://10.50.10.5:8000/Service1.svc/rest/InsertSmartOvenIMS/MIS,999,0,082033,PT1234567']
+					   ,'actions' => [['type' => 'uri', 'label' => 'Confirm','uri' => 'http://10.50.10.5:8000/Service1.svc/rest/InsertSmartOvenIMS/MIS,999,0,082033,PT1234567']] 
+					  ]
+			    ];
+		 $reply_token = $arrayJson['events'][0]['replyToken'];
+		 $data = [
+			'replyToken' => $reply_token,
+			'messages' => [$jsonText]	  
+			];
+		$post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
+		$send_result = send_reply_message($API_URL.'/reply',$arrayHeader, $post_body);
 		break;
 	default:
 		    $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
