@@ -141,11 +141,12 @@ if($command <>"NA"){
 		$displayName = $LINEUserProfile['displayName'];
 		
 		$client = new \Google_Client();
+		    /*
 		$client->setApplicationName('Google Sheets API PHP Quickstart');
 		$client->setScopes(\Google_Service_Sheets::SPREADSHEETS);
 		$client->setAuthConfig(__DIR__.'/amiable-nova-283403-c39da954a89c.json');
 		$client->setAccessType('offline');
-/*
+
 		$service = new \Google_Service_Sheets($client);
 		$spreadsheetId = "1CNvcz0JfS7-MoN7LjAhwCMchGd3W-soxD5EDYEWAdAg";
 
