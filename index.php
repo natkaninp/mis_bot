@@ -131,7 +131,7 @@ if($command <>"NA"){
 	case "MP5addjob";
 		$replyToken = $arrayJson['events'][0]['replyToken'];
 		$userId = $arrayJson['events'][0]['source']['userId'];
-		$type = $arrayJson['events'][0]['type'];
+
 
 		$LINEProfileDatas['url'] = "https://api.line.me/v2/bot/profile/".$userId;
 		$LINEProfileDatas['token'] = $accessToken;
@@ -155,7 +155,7 @@ if($command <>"NA"){
 		    
 		$arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
 		$arrayPostData['messages'][0]['type'] = "text";
-		$arrayPostData['messages'][0]['text'] = $type."MP5 บันทึกข้อความเรียบร้อยค่ะ";
+		$arrayPostData['messages'][0]['text'] = "MP5 บันทึกข้อความเรียบร้อยค่ะ";
 		replyMsg($arrayHeader,$arrayPostData);
 		break;
 	default:
