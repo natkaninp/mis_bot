@@ -143,7 +143,7 @@ if($command <>"NA"){
 		
 		    
 		$client = new \Google_Client();
-		  /*  
+  
 		$client->setApplicationName('Google Sheets API PHP Quickstart');
 		$client->setScopes(\Google_Service_Sheets::SPREADSHEETS);
 		$client->setAuthConfig(__DIR__.'/amiable-nova-283403-c39da954a89c.json');
@@ -153,7 +153,7 @@ if($command <>"NA"){
 		$spreadsheetId = "1CNvcz0JfS7-MoN7LjAhwCMchGd3W-soxD5EDYEWAdAg";
 
 		// updateData($spreadsheetId,$service);
-		insertData($spreadsheetId,$service,$displayName);*/
+		insertData($spreadsheetId,$service,$displayName);
 		    
 		$arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
 		$arrayPostData['messages'][0]['type'] = "text";
