@@ -106,7 +106,7 @@ if($command <>"NA"){
 		$send_result = send_reply_message($API_URL.'/reply',$arrayHeader, $post_body);
 
 		break;
-	case "MP5addjob";
+	case "MP5addjob6";
           	$jsonText = ['type' => 'template',
 			     'altText' => 'This is a buttons template',
 			     'template'=> ['type' => 'buttons'
@@ -128,6 +128,18 @@ if($command <>"NA"){
 		$post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
 		$send_result = send_reply_message($API_URL.'/reply',$arrayHeader, $post_body);
 		break;
+	case "MP5addjob"
+		$client = new \Google_Client();
+		$client->setApplicationName('Google Sheets API PHP Quickstart');
+		$client->setScopes(\Google_Service_Sheets::SPREADSHEETS);
+		$client->setAuthConfig(__DIR__.'/amiable-nova-283403-c39da954a89c.json');
+		$client->setAccessType('offline');
+
+		$service = new \Google_Service_Sheets($client);
+		$spreadsheetId = "1CNvcz0JfS7-MoN7LjAhwCMchGd3W-soxD5EDYEWAdAg";
+		$txtMessage = "testtttt";
+		// updateData($spreadsheetId,$service);
+		insertData($spreadsheetId,$service,$txtMessage);
 	default:
 		    $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
 		    $arrayPostData['messages'][0]['type'] = "text";
@@ -166,7 +178,67 @@ if($command <>"NA"){
 
 	    //return $result;
 	}
+	function insertData($spreadsheetId,$service,$displayName)
+	    {
+		// $range = 'congress!D2:F1000000';
+		    //INSERT DATA
+		    $range = 'a2';
+		    $values = [
+			[$displayName],
+		    ];
+		    $body = new Google_Service_Sheets_ValueRange([
+			'values' => $values
+		    ]);
+		    $params = [
+			'valueInputOption' => 'RAW'
+		    ];
+		    $insert = [
+			'insertDataOption' => 'INSERT_ROWS'
+		    ];
+		    $result = $service->spreadsheets_values->append(
+			$spreadsheetId,
+			$range,
+			$body,
+			$params,
+			$insert
+		    );
+	    }
 
+	    function updateData($spreadsheetId,$service)
+	    {
+		$range = 'a2:b2';
+		$values = [
+			["Test","Test"],
+		    ];
+		    $body = new Google_Service_Sheets_ValueRange([
+			'values' => $values
+		    ]);
+		$params = [
+			'valueInputOption' => 'RAW'
+		    ];
+		    $result = $service->spreadsheets_values->update(
+			$spreadsheetId,
+			$range,
+			$body,
+			$params
+		    );
+	    }
+
+	    function getData($spreadsheetId,$service)
+	    {
+		// GET DATA
+		    $range = 'congress!D2:F1000000';
+			$response = $service->spreadsheets_values->get($spreadsheetId, $range);
+			$values = $response->getValues();
+
+			if(empty($values)){
+				print "No Data Found.\n";
+			}else{
+				foreach ($values as $row) {
+					echo $row[0]."<br/>";
+				}
+			}
+	    }
   
      /*Return HTTP Request 200*/
      http_response_code(200);
