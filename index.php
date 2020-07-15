@@ -110,10 +110,10 @@ if($command <>"NA"){
           	$jsonText = ['type' => 'template',
 			     'altText' => 'This is a buttons template',
 			     'template'=> ['type' => 'buttons'
-					   ,'thumbnailImageUrl' => ""
-					   ,'imageAspectRatio' => ""
-					   ,'imageSize' => ""
-					   ,'imageBackgroundColor' => ""
+					   ,'thumbnailImageUrl' => "https://th.wiktionary.org/wiki/cat#/media/%E0%B9%84%E0%B8%9F%E0%B8%A5%E0%B9%8C:Gatto_europeo4.jpg"
+					   ,'imageAspectRatio' => "rectangle"
+					   ,'imageSize' => "cover"
+					   ,'imageBackgroundColor' => "#FFFFFF"
 					   ,'title' => "Menu"
 					   ,'text' => 'รบกวนกดปุ่ม confirm ด้วยค่ะ'
 					   ,'defaultAction' => ['type' => 'uri', 'label' => 'Confirm','uri' => 'http://10.50.10.5:8000/Service1.svc/rest/InsertSmartOvenIMS/MIS,999,0,082033,PT1234567']
