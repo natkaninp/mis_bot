@@ -155,7 +155,7 @@ if($command <>"NA"){
 		    
 		$arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
 		$arrayPostData['messages'][0]['type'] = "text";
-		$arrayPostData['messages'][0]['text'] = $resultsLineProfile."MP5 บันทึกข้อความเรียบร้อยค่ะ";
+		$arrayPostData['messages'][0]['text'] = "MP5 บันทึกข้อความเรียบร้อยค่ะ";
 		replyMsg($arrayHeader,$arrayPostData);
 		break;
 	default:
