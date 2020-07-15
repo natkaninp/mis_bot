@@ -145,12 +145,12 @@ if($command <>"NA"){
 		$client->setScopes(\Google_Service_Sheets::SPREADSHEETS);
 		$client->setAuthConfig(__DIR__.'/amiable-nova-283403-c39da954a89c.json');
 		$client->setAccessType('offline');
-
+/*
 		$service = new \Google_Service_Sheets($client);
 		$spreadsheetId = "1CNvcz0JfS7-MoN7LjAhwCMchGd3W-soxD5EDYEWAdAg";
 
 		// updateData($spreadsheetId,$service);
-		insertData($spreadsheetId,$service,$displayName);
+		insertData($spreadsheetId,$service,$displayName);*/
 		    
 		$arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
 		$arrayPostData['messages'][0]['type'] = "text";
