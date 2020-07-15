@@ -134,7 +134,7 @@ if($command <>"NA"){
 		$arrayPostData['messages'][0]['text'] = "MP5 บันทึกข้อความเรียบร้อยค่ะ";
 		replyMsg($arrayHeader,$arrayPostData);
 
-		$client = new \Google_Client();
+		/*$client = new \Google_Client();
 		$client->setApplicationName('Google Sheets API PHP Quickstart');
 		$client->setScopes(\Google_Service_Sheets::SPREADSHEETS);
 		$client->setAuthConfig(__DIR__.'/amiable-nova-283403-c39da954a89c.json');
@@ -144,7 +144,7 @@ if($command <>"NA"){
 		$spreadsheetId = "1CNvcz0JfS7-MoN7LjAhwCMchGd3W-soxD5EDYEWAdAg";
 		$txtMessage = "testtttt";
 		// updateData($spreadsheetId,$service);
-		insertData($spreadsheetId,$service,$txtMessage);
+		insertData($spreadsheetId,$service,$txtMessage);*/
 		break;
 	default:
 		    $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
