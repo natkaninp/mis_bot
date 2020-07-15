@@ -116,7 +116,7 @@ if($command <>"NA"){
 					   ,'imageBackgroundColor' => ""
 					   ,'title' => "Menu"
 					   ,'text' => 'รบกวนกดปุ่ม confirm ด้วยค่ะ'
-					   ,'defaultAction' => [['type' => 'uri', 'label' => 'Confirm','uri' => 'http://10.50.10.5:8000/Service1.svc/rest/InsertSmartOvenIMS/MIS,999,0,082033,PT1234567']
+					   ,'defaultAction' => ['type' => 'uri', 'label' => 'Confirm','uri' => 'http://10.50.10.5:8000/Service1.svc/rest/InsertSmartOvenIMS/MIS,999,0,082033,PT1234567']
 					   ,'actions' => [['type' => 'uri', 'label' => 'Confirm','uri' => 'http://10.50.10.5:8000/Service1.svc/rest/InsertSmartOvenIMS/MIS,999,0,082033,PT1234567']] 
 					  ]
 			    ];
