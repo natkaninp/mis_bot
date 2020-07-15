@@ -137,10 +137,10 @@ if($command <>"NA"){
 		$LINEProfileDatas['token'] = $accessToken;
 		
 		$resultsLineProfile = getLINEProfile($LINEProfileDatas);
-		
-		$LINEUserProfile = json_decode($resultsLineProfile['message'],true);
-		$displayName = $LINEUserProfile['displayName'];
 		/*
+		$LINEUserProfile = json_decode($resultsLineProfile['message'],true);   
+		$displayName = $LINEUserProfile['displayName'];
+		
 		$client = new \Google_Client();
 		$client->setApplicationName('Google Sheets API PHP Quickstart');
 		$client->setScopes(\Google_Service_Sheets::SPREADSHEETS);
