@@ -92,7 +92,7 @@ if($command <>"NA"){
 		$post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
 		$send_result = send_reply_message($API_URL.'/reply',$arrayHeader, $post_body);
 		break;
-	 case "MP5addjob";
+	 case "MP5addjob5";
 		$jsonText = ['type' => 'image',
 			     'originalContentUrl' => 'http://10.50.10.5:8000/Service1.svc/rest/InsertSmartOvenIMS/MIS,999,0,082033,PT1234567',
 			     'previewImageUrl'=> 'http://10.50.10.5:8000/Service1.svc/rest/InsertSmartOvenIMS/MIS,999,0,082033,PT1234567'
@@ -105,6 +105,59 @@ if($command <>"NA"){
 		$post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
 		$send_result = send_reply_message($API_URL.'/reply',$arrayHeader, $post_body);
 
+		break;
+	case "MP5addjob6";
+          	$jsonText = ['type' => 'template',
+			     'altText' => 'This is a buttons template',
+			     'template'=> ['type' => 'buttons'
+					   ,'thumbnailImageUrl' => "https://th.wiktionary.org/wiki/cat#/media/%E0%B9%84%E0%B8%9F%E0%B8%A5%E0%B9%8C:Gatto_europeo4.jpg"
+					   ,'imageAspectRatio' => "rectangle"
+					   ,'imageSize' => "cover"
+					   ,'imageBackgroundColor' => "#FFFFFF"
+					   ,'title' => "Menu"
+					   ,'text' => 'รบกวนกดปุ่ม confirm ด้วยค่ะ'
+					   ,'defaultAction' => ['type' => 'uri', 'label' => 'Confirm','uri' => 'http://10.50.10.5:8000/Service1.svc/rest/InsertSmartOvenIMS/MIS,999,0,082033,PT1234567']
+					   ,'actions' => [['type' => 'uri', 'label' => 'Confirm','uri' => 'http://10.50.10.5:8000/Service1.svc/rest/InsertSmartOvenIMS/MIS,999,0,082033,PT1234567']] 
+					  ]
+			    ];
+		 $reply_token = $arrayJson['events'][0]['replyToken'];
+		 $data = [
+			'replyToken' => $reply_token,
+			'messages' => [$jsonText]	  
+			];
+		$post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
+		$send_result = send_reply_message($API_URL.'/reply',$arrayHeader, $post_body);
+		break;
+	case "MP5addjob";
+		$replyToken = $arrayJson['events'][0]['replyToken'];
+		$userId = $arrayJson['events'][0]['source']['userId'];
+
+
+		$LINEProfileDatas['url'] = "https://api.line.me/v2/bot/profile/".$userId;
+		$LINEProfileDatas['token'] = $accessToken;
+		
+		$resultsLineProfile = getLINEProfile($LINEProfileDatas);
+		$LINEUserProfile = json_decode($resultsLineProfile['message'],true);   
+		$displayName = $LINEUserProfile['displayName'];
+		
+		    
+		$client = new \Google_Client();
+		  /*  
+		$client->setApplicationName('Google Sheets API PHP Quickstart');
+		$client->setScopes(\Google_Service_Sheets::SPREADSHEETS);
+		$client->setAuthConfig(__DIR__.'/amiable-nova-283403-c39da954a89c.json');
+		$client->setAccessType('offline');
+
+		$service = new \Google_Service_Sheets($client);
+		$spreadsheetId = "1CNvcz0JfS7-MoN7LjAhwCMchGd3W-soxD5EDYEWAdAg";
+
+		// updateData($spreadsheetId,$service);
+		insertData($spreadsheetId,$service,$displayName);*/
+		    
+		$arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
+		$arrayPostData['messages'][0]['type'] = "text";
+		$arrayPostData['messages'][0]['text'] = $displayName."MP5 บันทึกข้อความเรียบร้อยค่ะ";
+		replyMsg($arrayHeader,$arrayPostData);
 		break;
 	default:
 		    $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
@@ -144,8 +197,109 @@ if($command <>"NA"){
 
 	    //return $result;
 	}
+	function insertData($spreadsheetId,$service,$displayName)
+	    {
+		// $range = 'congress!D2:F1000000';
+		    //INSERT DATA
+		    $range = 'a2';
+		    $values = [
+			[$displayName],
+		    ];
+		    $body = new Google_Service_Sheets_ValueRange([
+			'values' => $values
+		    ]);
+		    $params = [
+			'valueInputOption' => 'RAW'
+		    ];
+		    $insert = [
+			'insertDataOption' => 'INSERT_ROWS'
+		    ];
+		    $result = $service->spreadsheets_values->append(
+			$spreadsheetId,
+			$range,
+			$body,
+			$params,
+			$insert
+		    );
+	    }
 
+	function updateData($spreadsheetId,$service)
+	    {
+		$range = 'a2:b2';
+		$values = [
+			["Test","Test"],
+		    ];
+		    $body = new Google_Service_Sheets_ValueRange([
+			'values' => $values
+		    ]);
+		$params = [
+			'valueInputOption' => 'RAW'
+		    ];
+		    $result = $service->spreadsheets_values->update(
+			$spreadsheetId,
+			$range,
+			$body,
+			$params
+		    );
+	    }
+
+	    function getData($spreadsheetId,$service)
+	    {
+		// GET DATA
+		    $range = 'congress!D2:F1000000';
+			$response = $service->spreadsheets_values->get($spreadsheetId, $range);
+			$values = $response->getValues();
+
+			if(empty($values)){
+				print "No Data Found.\n";
+			}else{
+				foreach ($values as $row) {
+					echo $row[0]."<br/>";
+				}
+			}
+	    }
   
+	function getLINEProfile($datas)
+	{
+			$datasReturn = [];
+
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+			  CURLOPT_URL => $datas['url'],
+			  CURLOPT_RETURNTRANSFER => true,
+			  CURLOPT_ENCODING => "",
+			  CURLOPT_MAXREDIRS => 10,
+			  CURLOPT_TIMEOUT => 30,
+			  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			  CURLOPT_CUSTOMREQUEST => "GET",
+			  CURLOPT_HTTPHEADER => array(
+			    "Authorization: Bearer ".$datas['token'],
+			    "Postman-Token: 32d99c7d-9f6e-4413-a4d2-fa0a9f1ecf6d",
+			    "cache-control: no-cache"
+			  ),
+			));
+
+			$response = curl_exec($curl);
+			$err = curl_error($curl);
+
+			curl_close($curl);
+
+			if ($err) {
+		    $datasReturn['result'] = 'E';
+		    $datasReturn['message'] = $err;
+		} else {
+		    if($response == "{}"){
+			$datasReturn['result'] = 'S';
+			$datasReturn['message'] = 'Success';
+		    }else{
+			$datasReturn['result'] = 'E';
+			$datasReturn['message'] = $response;
+		    }
+		}
+		return $datasReturn;
+	}
+		
      /*Return HTTP Request 200*/
      http_response_code(200);
     ?>
