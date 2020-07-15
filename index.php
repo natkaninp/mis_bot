@@ -135,9 +135,8 @@ if($command <>"NA"){
 
 		$LINEProfileDatas['url'] = "https://api.line.me/v2/bot/profile/".$userId;
 		$LINEProfileDatas['token'] = $accessToken;
-		
-		$resultsLineProfile = getLINEProfile($LINEProfileDatas);
 		/*
+		$resultsLineProfile = getLINEProfile($LINEProfileDatas);
 		$LINEUserProfile = json_decode($resultsLineProfile['message'],true);   
 		$displayName = $LINEUserProfile['displayName'];
 		
