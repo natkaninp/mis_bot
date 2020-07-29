@@ -99,7 +99,7 @@ if($command <>"NA"){
 			     'altText' => 'this is a confirm template',
 			     'template'=> ['type' => 'confirm', 
 					   'text' => 'Confirm hold machine หน่อยค่ะ',
-					   'actions' => [['type' => 'message', 'label' => 'OK','text' => 'ทำการ Hold mc.no.1 เรียบร้อยค่ะ'],
+					   'actions' => [['type' => 'message', 'label' => 'OK','text' => 'ทำการ Hold machine no. 1 เรียบร้อยค่ะ'],
 						        ['type' => 'message', 'label' => 'NO','text' => 'no']
 						      ] 
 					  ]
