@@ -30,10 +30,10 @@
         $arrayPostData['messages'][0]['packageId'] = "2";
         $arrayPostData['messages'][0]['stickerId'] = "46";
         replyMsg($arrayHeader,$arrayPostData);
-    }else if($message == "เราชื่อปิงปองนะ"){
+    }else if($message == "getmcstatus 1"){
         $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
         $arrayPostData['messages'][0]['type'] = "text";
-        $arrayPostData['messages'][0]['text'] = "ปิงปอง MIS หล่อๆ ที่เข้ามีตติ้งกับเราวันก่อนใช่ป่าวคะ";
+        $arrayPostData['messages'][0]['text'] = "machine no.1 status : RUNNING";
         replyMsg($arrayHeader,$arrayPostData);
     }
 
@@ -81,6 +81,25 @@ if($command <>"NA"){
 			     'template'=> ['type' => 'confirm', 
 					   'text' => 'Confirm add job หน่อยค่ะ',
 					   'actions' => [['type' => 'message', 'label' => 'OK','text' => 'yes'],
+						        ['type' => 'message', 'label' => 'NO','text' => 'no']
+						      ] 
+					  ]
+			    ];
+		 $reply_token = $arrayJson['events'][0]['replyToken'];
+		 $data = [
+			'replyToken' => $reply_token,
+			'messages' => [$jsonText]	  
+			];
+		$post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
+		$send_result = send_reply_message($API_URL.'/reply',$arrayHeader, $post_body);
+		break;
+	case "MP5Holdmc 1";
+		$actionText = [['type' => 'message', 'label' => 'OK','text' => 'yes'],['type' => 'message', 'label' => 'NO','text' => 'no']];
+          	$jsonText = ['type' => 'template',
+			     'altText' => 'this is a confirm template',
+			     'template'=> ['type' => 'confirm', 
+					   'text' => 'Confirm hold machine หน่อยค่ะ',
+					   'actions' => [['type' => 'message', 'label' => 'OK','text' => 'ทำการ hold เรียบร้อยค่ะ'],
 						        ['type' => 'message', 'label' => 'NO','text' => 'no']
 						      ] 
 					  ]
