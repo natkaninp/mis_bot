@@ -93,7 +93,7 @@ if($command <>"NA"){
 		$post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
 		$send_result = send_reply_message($API_URL.'/reply',$arrayHeader, $post_body);
 		break;
-	case "Mp5holdmc-1";
+	case "Mp5holdmc";
 		$actionText = [['type' => 'message', 'label' => 'OK','text' => 'yes'],['type' => 'message', 'label' => 'NO','text' => 'no']];
           	$jsonText = ['type' => 'template',
 			     'altText' => 'this is a confirm template',
