@@ -30,7 +30,7 @@
         $arrayPostData['messages'][0]['packageId'] = "2";
         $arrayPostData['messages'][0]['stickerId'] = "46";
         replyMsg($arrayHeader,$arrayPostData);
-    }else if($message == "getmcstatus 1"){
+    }else if($message == "GETMCSTATUS 1"){
         $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
         $arrayPostData['messages'][0]['type'] = "text";
         $arrayPostData['messages'][0]['text'] = "machine no.1 status : RUNNING";
@@ -93,7 +93,7 @@ if($command <>"NA"){
 		$post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
 		$send_result = send_reply_message($API_URL.'/reply',$arrayHeader, $post_body);
 		break;
-	case "MP5Holdmc 1";
+	case "MP5HOLDMC 1";
 		$actionText = [['type' => 'message', 'label' => 'OK','text' => 'yes'],['type' => 'message', 'label' => 'NO','text' => 'no']];
           	$jsonText = ['type' => 'template',
 			     'altText' => 'this is a confirm template',
